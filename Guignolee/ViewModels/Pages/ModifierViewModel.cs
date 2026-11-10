@@ -1,4 +1,6 @@
-﻿namespace Guignolee.ViewModels.Pages
+﻿using Guignolee.Models;
+
+namespace Guignolee.ViewModels.Pages
 {
     public class ModifierDonViewModel : BaseViewModel
     {
@@ -19,6 +21,25 @@
         public ModifierDonViewModel(DonViewModel donViewModel)
         {
             DonEdit = donViewModel;
+        }
+
+        public bool Enregistrer()
+        {
+            
+
+            Don nouveauDon = new Don(
+                DonateurSaisi,
+                ContenuSaisi,
+                QuantiteSaisi);
+
+            _donDataProvider.AjouterDon(nouveauDon);
+
+            DonateurSaisi = "";
+            ContenuSaisi = "";
+            QuantiteSaisi = "";
+
+
+            return true;
         }
 
     }

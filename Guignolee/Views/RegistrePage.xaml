@@ -140,6 +140,13 @@
                                 Header="Donateur"
                                 PlaceholderText="Prénom Nom"
                                 Text="" />
+                            <ItemsControl ItemsSource="{x:Bind ViewModel.GetErrors('Donateur'), Mode=OneWay}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding ErrorMessage}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
                         </StackPanel>
 
                         <StackPanel Grid.Column="1">
@@ -147,6 +154,13 @@
                                 Header="Contenu du don"
                                 PlaceholderText="Ex. : Conserves de soupe"
                                 Text="" />
+                            <ItemsControl ItemsSource="{x:Bind ViewModel.GetErrors('Contenu'), Mode=OneWay}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding ErrorMessage}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
                         </StackPanel>
 
                         <StackPanel Grid.Column="2">
@@ -155,6 +169,13 @@
                                 MaxLength="3"
                                 PlaceholderText="Ex. : 24"
                                 Text="" />
+                            <ItemsControl ItemsSource="{x:Bind ViewModel.GetErrors('Quantite'), Mode=OneWay}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding ErrorMessage}" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
                         </StackPanel>
 
                         <CheckBox

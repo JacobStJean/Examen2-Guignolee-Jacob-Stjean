@@ -1,19 +1,29 @@
 ﻿using Guignolee.Models;
 using System;
+using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Guignolee.ViewModels
 {
-    public class DonViewModel
+    public class DonViewModel : ValidableViewModel
     {
         private readonly Don _don;
 
         public DonViewModel(Don don)
         {
             _don = don;
+            _errors.Add("Donateur", new ObservableCollection<ValidationResult>());
+            _errors.Add("Contenu", new ObservableCollection<ValidationResult>());
+            _errors.Add("Quantite", new ObservableCollection<ValidationResult>());
         }
 
         public int Id => _don.Id;
 
+
+        [Required(ErrorMessage = "Le donateur est obligatoire.")]
+        [StringLength(50, MinimumLength = 2,
+            ErrorMessage = "Le donateur doit contenir de 2 à 50 caractères.")]
         public string Donateur
         {
             get { return _don.Donateur; }
@@ -22,10 +32,13 @@ namespace Guignolee.ViewModels
                 if (_don.Donateur != value)
                 {
                     _don.Donateur = value;
+                   
                 }
             }
         }
-
+        [Required(ErrorMessage = "Le contenu est obligatoire.")]
+        [StringLength(50, MinimumLength = 2,
+            ErrorMessage = "Le contenu doit contenir de 2 à 50 caractères.")]
         public string Contenu
         {
             get { return _don.Contenu; }
@@ -37,7 +50,9 @@ namespace Guignolee.ViewModels
                 }
             }
         }
-
+        [Required(ErrorMessage = "La quantité est obligatoire.")]
+        [StringLength(100, MinimumLength = 1,
+            ErrorMessage = "La quantité doit contenir de 1 à 100 articles.")]
         public int Quantite
         {
             get { return _don.Quantite; }

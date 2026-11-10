@@ -3,6 +3,7 @@ using Guignolee.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace Guignolee.ViewModels.Pages
@@ -14,6 +15,7 @@ namespace Guignolee.ViewModels.Pages
         public ObservableCollection<DonViewModel> Dons { get; } = new ObservableCollection<DonViewModel>();
 
         private DonViewModel _nouveauDon;
+
         public DonViewModel NouveauDon
         {
             get { return _nouveauDon; }
@@ -71,7 +73,12 @@ namespace Guignolee.ViewModels.Pages
         {
             // TODO: À compléter selon la documentation de la méthode.
 
-            DonSelectionne = null;
+            Dons.Clear();
+            foreach (Don don in _donDataProvider.GetDons())
+            {
+                Dons.Add(new DonViewModel(don));
+            }
+
         }
 
         /// <summary>
@@ -83,6 +90,17 @@ namespace Guignolee.ViewModels.Pages
             _donDataProvider.AjouterDon(new Don(NouveauDon.Donateur, NouveauDon.Contenu, NouveauDon.Quantite, NouveauDon.EstPerissable));
             ChargerDonnees();
             NouveauDon = new DonViewModel(new Don());
+        }
+
+        public void RemettreDon()
+        {
+
+            if (DonSelectionne == null)
+                return;
+
+            _donDataProvider.SupprimerDon(DonSelectionne.Id);
+
+            ChargerDonnees();
         }
     }
 }

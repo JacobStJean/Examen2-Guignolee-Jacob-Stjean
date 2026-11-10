@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -42,11 +43,30 @@ namespace Guignolee.Views
         private void btnModifier_Click(object sender, RoutedEventArgs e)
         {
             // TODO: À compléter
+            Frame.Navigate(typeof(ModifierPage));
         }
 
-        private void btnMarquerRemis_Click(object sender, RoutedEventArgs e)
+        private async Task btnMarquerRemis_Click(object sender, RoutedEventArgs e)
         {
             // TODO: À compléter
+            if (ViewModel.DonSelectionne == null)
+                return;
+
+            ContentDialog confirmation = new ContentDialog
+            {
+                Title = "Remettre le don?",
+                Content = "Veux-tu vraiment remettre le don sélectionné ?",
+                PrimaryButtonText = "Remettre",
+                CloseButtonText = "Annuler",
+                DefaultButton = ContentDialogButton.Close,
+                XamlRoot = this.XamlRoot
+            };
+            ContentDialogResult choix = await confirmation.ShowAsync();
+
+            if (choix == ContentDialogResult.Primary)
+            {
+                ViewModel.RemettreDon();
+            }
         }
 
         private void btnAjouter_Click(object sender, RoutedEventArgs e)
