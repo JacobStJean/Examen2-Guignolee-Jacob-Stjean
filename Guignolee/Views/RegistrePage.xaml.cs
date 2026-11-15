@@ -71,6 +71,8 @@ namespace Guignolee.Views
 
         private void btnAjouter_Click(object sender, RoutedEventArgs e)
         {
+            // TODO: Seulement si l'objet est valide 
+            //      if (ViewModel.NouveauDon.EstValide)
             ViewModel.AjouterDon();
         }
     }

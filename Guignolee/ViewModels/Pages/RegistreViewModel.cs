@@ -71,14 +71,14 @@ namespace Guignolee.ViewModels.Pages
         /// </summary>
         public void ChargerDonnees()
         {
-            // TODO: À compléter selon la documentation de la méthode.
-
+            // TODO:  Utiliser LINQ pour filtrer et trier les dons à remettre, puis les ajouter à la collection Dons.
             Dons.Clear();
             foreach (Don don in _donDataProvider.GetDons())
             {
                 Dons.Add(new DonViewModel(don));
             }
 
+            // TODO: RaisePropertyChanged pour notifier que la propriété EtatDons a changé.
         }
 
         /// <summary>
@@ -98,6 +98,10 @@ namespace Guignolee.ViewModels.Pages
             if (DonSelectionne == null)
                 return;
 
+            // TODO: Il n'est pas demandé de supprimer le don mais juste de le retirer de la liste
+            //       (marquer comme remis, avec les bonnes méthodes Linq dans le chargement de données ça ne s'affichera pas).
+
+            //      DonSelectionne.EstRemis = true;
             _donDataProvider.SupprimerDon(DonSelectionne.Id);
 
             ChargerDonnees();

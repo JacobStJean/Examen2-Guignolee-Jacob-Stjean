@@ -29,10 +29,11 @@ namespace Guignolee.ViewModels
             get { return _don.Donateur; }
             set
             {
+                // TODO: appliquer les validations && Validate(value)
                 if (_don.Donateur != value)
                 {
                     _don.Donateur = value;
-                   
+                    // TODO: RaisePropertyChanged pour notifier que la propriété Donateur a changé.
                 }
             }
         }

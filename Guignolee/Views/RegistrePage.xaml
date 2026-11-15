@@ -73,6 +73,10 @@
                             Text="Dons à remettre"
                             TextWrapping="Wrap" />
                     </Border>
+                    <!--
+                        TODO: Question 4 : 1. liaison de données TwoWay avec le don sélectionné
+                        SelectedItem="{x:Bind ViewModel.DonSelectionne, Mode=TwoWay}"
+                    -->
                     <ListView
                         Height="320"
                         Margin="0,8"
@@ -135,11 +139,20 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
+                        <!--
+                            TODO: Question 2 : faire la liaison de données sur les Text=""
+                            Text="{x:Bind ViewModel.NouveauDon.Donateur, Mode=TwoWay}"
+                            Text="{x:Bind ViewModel.NouveauDon.Contenu, Mode=TwoWay}"
+                            Text="{x:Bind ViewModel.NouveauDon.Quantite, Mode=TwoWay}"
+                            IsChecked="{x:Bind ViewModel.NouveauDon.EstPerissable, Mode=TwoWay}"
+                        -->
+
                         <StackPanel Grid.Column="0">
                             <TextBox
                                 Header="Donateur"
                                 PlaceholderText="Prénom Nom"
                                 Text="" />
+                            <!--  TODO: ViewModel.NouveauDon.GetErrors('Donateur')  -->
                             <ItemsControl ItemsSource="{x:Bind ViewModel.GetErrors('Donateur'), Mode=OneWay}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
